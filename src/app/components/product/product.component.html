@@ -7,37 +7,35 @@
     <strong>{{ filterText }}</strong> ürününü aradınız
     <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
 </div>
-
-
-
 <div *ngIf="dataLoaded == false" class="text-center mt-5">
   <div class="spinner-border" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 </div>
-
 <table *ngIf="dataLoaded != false" class="table">
   <thead>
     <tr>
       <th>Id</th>
       <th>Ürün Adı</th>
-      <th>Kategori</th>
-      <th>Fiyat</th>
-      <th>KDV'li Fiyat</th>
-      <th>Stok Durumu</th>
-      <th>Satın Al</th>
+      <th class="text-center">Kategori</th>
+      <th class="text-center">Fiyat</th>
+      <th class="text-center">KDV'li Fiyat</th>
+      <th class="text-center">Stok Durumu</th>
+      <th class="text-center">Sepete Ekle</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products | filterPipe:filterText">
+    <tr *ngFor="let product of products | filterPipe:filterText" class="align-middle">
       <td>{{ product.productId }}</td>
       <td>{{ product.productName | uppercase }}</td> <!-- // uppercase ya da lowercase -->
-      <td>{{ product.categoryId }}</td>
-      <td>{{ product.unitPrice | currency }}</td>
-      <td>{{ product.unitPrice | vatAdded:18 | currency }}</td>
-      <td>{{ product.unitsInStock }}</td>
-      <td>
-        <button type="button" class="btn btn-warning btn-sm text-light"><strong>Sepete Ekle</strong></button>
+      <td class="text-center">{{ product.categoryId }}</td>
+      <td class="text-center">{{ product.unitPrice | currency: "TRY":"₺":"" }}</td>
+      <td class="text-center">{{ product.unitPrice | vatAdded:18 | currency: "TRY":"₺":""  }}</td>
+      <td class="text-center">{{ product.unitsInStock }}</td>
+      <td class="text-center">
+        <button (click)="addToCart(product)" type="button" class="btn">
+          <img src="../../../assets/images/cart.svg" height="32px" alt="" srcset="">
+        </button>
       </td>
     </tr>
   </tbody>

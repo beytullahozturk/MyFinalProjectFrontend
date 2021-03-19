@@ -34,6 +34,7 @@ export class CategoryComponent implements OnInit {
     }else{
       return "list-group-item list-group-item-action"
     }
+
   }
   getAllCategoryClass(){
     if(!this.currentCategory){
