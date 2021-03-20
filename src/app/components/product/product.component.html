@@ -27,7 +27,7 @@
   <tbody>
     <tr *ngFor="let product of products | filterPipe:filterText" class="align-middle">
       <td>{{ product.productId }}</td>
-      <td>{{ product.productName | uppercase }}</td> <!-- // uppercase ya da lowercase -->
+      <td>{{ product.productName | titlecase }}</td> <!-- // uppercase ya da lowercase -->
       <td class="text-center">{{ product.categoryId }}</td>
       <td class="text-center">{{ product.unitPrice | currency: "TRY":"₺":"" }}</td>
       <td class="text-center">{{ product.unitPrice | vatAdded:18 | currency: "TRY":"₺":""  }}</td>
